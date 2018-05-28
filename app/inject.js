@@ -8,7 +8,6 @@ document.addEventListener("DOMContentLoaded", function (event) {
             $.iframe.on('load', function () {
                 $.target = $("#download-button", $.iframe.contents());
                 $.target.css({ "border": "solid" });
-                $.iframe.scroll(scrl);
             });
             function posAdd(pos1, pos2) {
                 return { left: pos1.left + pos2.left, top: pos1.top + pos2.top };
@@ -50,16 +49,19 @@ document.addEventListener("DOMContentLoaded", function (event) {
                         left: -$.iframe.contents().scrollLeft()
                     };
                     let p_c = $.target.offset();
+                    let p_g = posAdd(p_c, p_f);
                     let p_d = {
-                        top: Math.min(Math.max(p_c.top, 0), $.iframe.height()),
-                        left: Math.min(Math.max(p_c.left, 0), $.iframe.width())
+                        top: Math.min(Math.max(p_g.top, 0), $.iframe.height()),
+                        left: Math.min(Math.max(p_g.left, 0), $.iframe.width())
                     };
-                    let p_g = posAdd(p_d, p_f);
-                    p_b = posAdd(p_b, p_g);
+                    p_b = posAdd(p_b, p_d);
                 }
                 point.css(posAdd(p_a, p_b));
             }
             $(window).scroll(scrl);
+            $($.iframe).on('load', function () {
+                $($.iframe.contents()).scroll(scrl);
+            });
         });
     };
 
