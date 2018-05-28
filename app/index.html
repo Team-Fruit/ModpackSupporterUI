@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Electron Read Us</title>
+<style>
+html, body {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+#wv {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 640px;
+    height: 480px;
+}
+</style>
+</head>
+<body>
+    <div id="controls">
+        Hello, electron!
+    </div>
+    <webview id="wv" preload="inject.js" src="http://forum.minecraftuser.jp/viewtopic.php?t=32386" autosize="on" disablewebsecurity>
+    </webview>
+    <script>
+        window.jQuery = window.$ = require('./lib/jquery');
+        $(function() {
+            function resize_wv() {
+                let d_wv = $("#wv");
+                let d_window = $(window);
+                let d_ctrl = $("#controls");
+                d_wv.width(d_window.width());
+                d_wv.height(d_window.height() - d_ctrl.height());
+                return this;
+            }
+            resize_wv();
+            $(window).resize(resize_wv);
+        });
+    </script>
+</body>
+</html>

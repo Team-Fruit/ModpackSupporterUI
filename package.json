@@ -1,0 +1,16 @@
+{
+  "name": "ModpackSupporter",
+  "version": "1.0.0",
+  "description": "ModpackSupporter",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "electron-download-manager": "^2.1.1",
+    "jquery": "^3.3.1"
+  }
+}
